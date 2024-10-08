@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Pascal's Curriculum Vitae</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Personal Details">
+    <style>
+        body {
+            background-image: url("C:/Users/Pascal/OneDrive/Documents/scsc assigment/pascal.html/R.jpeg");
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .content {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 800px;
+            margin: 20px;
+        }
+        .profile-pic {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+        textarea, input[type="text"], input[type="date"], input[type="number"], input[type="tel"], input[type="email"] {
+            padding: 10px;
+            width: 100%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Personal Information Section -->
+    <div class="content">
+        <h1>Curriculum Vitae Creator</h1>
+        <img src="C:/Users/Pascal/OneDrive/Documents/scsc assigment/pascal.html/IMG-20240511-WA0082.jpg" alt="Profile Picture" class="profile-pic">
+    </div>
+
+    <!-- Personal Information Form -->
+    <div class="content">
+        <h3>Personal Information</h3>
+        <label for="name">Surname & Name:</label>
+        <input type="text" id="name" name="name">
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob">
+        <label for="id-no">ID No:</label>
+        <input type="number" id="id-no" name="id-no">
+        <label for="nat">Nationality:</label>
+        <input type="text" id="nat" name="nat">
+        <label for="pos-add">Postal Address:</label>
+        <input type="text" id="pos-add" name="pos-add">
+        <label for="tel1">Telephone 1:</label>
+        <input type="tel" id="tel1" name="tel1">
+        <label for="tel2">Telephone 2:</label>
+        <input type="tel" id="tel2" name="tel2">
+        <label for="email-add">Email Address:</label>
+        <input type="email" id="email-add" name="email-add">
+        <button onclick="savePersonalInfo()">Save Personal Info</button>
+    </div>
+
+    <!-- Synopsis Section -->
+    <div class="content">
+        <label for="synopsis">Synopsis:</label>
+        <textarea id="synopsis" name="synopsis" placeholder="Enter your synopsis"></textarea>
+        <button onclick="saveSynopsis()">Save</button>
+    </div>
+
+    <!-- Area of Expertise Section -->
+    <div class="content">
+        <label for="expertise">Area of Expertise:</label>
+        <textarea id="expertise" name="expertise" placeholder="Enter your area of expertise"></textarea>
+        <button onclick="saveExpertise()">Save</button>
+    </div>
+
+    <!-- Qualifications Section -->
+    <div class="content">
+        <h2>Enter Your Qualifications</h2>
+        <form id="qualificationForm">
+            <label for="period">Period:</label>
+            <input type="text" id="period" name="period" placeholder="e.g., 2004">
+            <label for="institution">Institution:</label>
+            <input type="text" id="institution" name="institution" placeholder="e.g., University of Venda">
+            <label for="degree">Degree(s) or Diploma(s) obtained:</label>
+            <input type="text" id="degree" name="degree" placeholder="e.g., Bachelor of Environmental Sciences Honors">
+            <button type="submit">Add Qualification</button>
+        </form>
+
+        <h2>Qualifications</h2>
+        <table id="qualificationsTable">
+            <thead>
+                <tr>
+                    <th>Period</th>
+                    <th>Institution</th>
+                    <th>Degree(s) or Diploma(s) obtained</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <button onclick="saveQualifications()">Save</button>
+    </div>
+
+    <!-- Work Experience Section -->
+    <div class="content">
+        <label for="WORK">Work Experience:</label>
+        <textarea id="WORK" name="WORK" placeholder="Enter your work experience"></textarea>
+        <button onclick="saveAllInfo()">Save and Download CV</button>
+        <div id="message"></div>
+    </div>
+
+    <script>
+        // Personal Info Save
+        function savePersonalInfo() {
+            const name = document.getElementById("name").value;
+            const dob = document.getElementById("dob").value;
+            const idNo = document.getElementById("id-no").value;
+            const nationality = document.getElementById("nat").value;
+            const postalAddress = document.getElementById("pos-add").value;
+            const telephone1 = document.getElementById("tel1").value;
+            const telephone2 = document.getElementById("tel2").value;
+            const email = document.getElementById("email-add").value;
+        
+            localStorage.setItem("name", name);
+            localStorage.setItem("dob", dob);
+            localStorage.setItem("id-no", idNo);
+            localStorage.setItem("nationality", nationality);
+            localStorage.setItem("postal-address", postalAddress);
+            localStorage.setItem("telephone1", telephone1);
+            localStorage.setItem("telephone2", telephone2);
+            localStorage.setItem("email", email);
+        
+            alert("Personal information saved.");
+        }
+
+        // Save Synopsis
+        function saveSynopsis() {
+            const synopsis = document.getElementById("synopsis").value;
+            localStorage.setItem("synopsis", synopsis);
+            alert("Synopsis saved.");
+        }
+
+        // Save Expertise
+        function saveExpertise() {
+            const expertise = document.getElementById("expertise").value;
+            localStorage.setItem("expertise", expertise);
+            alert("Expertise saved.");
+        }
+
+        // Save Qualifications
+        document.getElementById('qualificationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const period = document.getElementById('period').value;
+            const institution = document.getElementById('institution').value;
+            const degree = document.getElementById('degree').value;
+
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `<td>${period}</td><td>${institution}</td><td>${degree}</td>`;
+            document.querySelector('#qualificationsTable tbody').appendChild(newRow);
+
+            form.reset();
+        });
+
+        function saveQualifications() {
+            const period = document.getElementById("period").value;
+            const institution = document.getElementById("institution").value;
+            const degree = document.getElementById("degree").value;
+
+            localStorage.setItem("period", period);
+            localStorage.setItem("institution", institution);
+            localStorage.setItem("degree", degree);
+
+            alert("Qualifications saved.");
+        }
+
+        // Save and Download All Information
+        function saveAllInfo() {
+            const name = localStorage.getItem("name");
+            const dob = localStorage.getItem("dob");
+            const idNo = localStorage.getItem("id-no");
+            const nationality = localStorage.getItem("nationality");
+            const postalAddress = localStorage.getItem("postal-address");
+            const telephone1 = localStorage.getItem("telephone1");
+            const telephone2 = localStorage.getItem("telephone2");
+            const email = localStorage.getItem("email");
+            const synopsis = localStorage.getItem("synopsis");
+            const expertise = localStorage.getItem("expertise");
+            const period = localStorage.getItem("period");
+            const institution = localStorage.getItem("institution");
+            const degree = localStorage.getItem("degree");
+            const qualifications = `${period}, ${institution}, ${degree}`;
+            const workExperience = document.getElementById("WORK").value;
+
+            const completeData = `
+                Name: ${name}
+                Date of Birth: ${dob}
+                ID No: ${idNo}
+                Nationality: ${nationality}
+                Postal Address: ${postalAddress}
+                Telephone 1: ${telephone1}
+                Telephone 2: ${telephone2}
+                Email: ${email}
+                
+                Synopsis: ${synopsis}
+                Area of Expertise: ${expertise}
+                Qualifications: ${qualifications}
+                Work Experience: ${workExperience}
+            `;
+
+            const blob = new Blob([completeData], { type: 'text/plain' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            const sanitizedFileName = name.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+            link.download = `${sanitizedFileName}_CV.txt`;
+            link.click();
+            URL.revokeObjectURL(link.href);
+
+            document.getElementById("WORK").value = "";
+            localStorage.clear();
+            document.getElementById("message").textContent = "Thank you for using our website!";
+        }
+    </script>
+</body>
+</html>
